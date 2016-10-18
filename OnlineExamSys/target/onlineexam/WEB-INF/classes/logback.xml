@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ================================================================================== -->
+<!-- Appenders -->
+<!-- -->
+<!-- Loggers can be associated with 1 or more appenders. -->
+<!-- rolling_file_appender is the default appender in this file. -->
+<!-- STDOUT appender can be added to loggers below if needed. -->
+<!-- ================================================================================== -->
+
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+	<property name="LOG_PATH" value="../logs" />
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<!-- <pattern>%d | [%.-1level] | %c | %X{DisplayUserName} | %X{userName} 
+				| %X{uniqueClientId} | %m%n</pattern> -->
+
+			<pattern> %d | [%.-1level] | %logger | %X{threadId} |%m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="rolling_file_appender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- **** File name must match SAPILOGNAME value in Install.properties 
+			**** -->
+		<File>${LOG_PATH}/ov-operation.log</File>
+		<Append>true</Append>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<!-- <pattern>%d | [%.-1level] | %c | %X{DisplayUserName} | %X{userName} 
+				| %X{uniqueClientId} | %m%n</pattern> -->
+
+			<pattern> %d | [%.-1level] | %logger | %X{threadId} |%m%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<maxHistory>30</maxHistory>    
+			<FileNamePattern>${LOG_PATH}/ov-operation-%d{yyyy-MM-dd}.log.%i</FileNamePattern>
+			<TimeBasedFileNamingAndTriggeringPolicy class= "ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>10MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy >
+		</rollingPolicy>
+	</appender>
+
+
+	<!-- ========================================================================================== -->
+	<!-- possible logger threshold level values: all < debug < info < warn < 
+		error < fatal < off -->
+	<!-- ========================================================================================== -->
+	<logger name="central.logger" level="debug">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="rolling_file_appender" />
+	</logger>
+
+	<!-- ===================================================================================== -->
+	<!-- com.cienet.* will inherit these value unless overridden below -->
+	<!-- Allows for logging of info, warn, error and fatal messages to the specified 
+		appenders -->
+	<!-- ===================================================================================== -->
+
+	<logger name="com.ifox" level="debug">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="rolling_file_appender" />
+	</logger>
+
+	<!-- ================================================================================= -->
+	<!-- Below are the overrides to the default values specified above for com.cienet.* -->
+	<!-- ================================================================================= -->
+	<logger name="com.ifox.framework.service.impl" level="off" />
+
+	<logger name="com.ifox.framework.dao.impl" level="off" />
+
+	<logger name="com.ifox.framework" level="off" />
+
+	<!-- ================================================================================= -->
+	<!-- 3p settings -->
+	<!-- ================================================================================= -->
+
+	<logger name="org.springframework" level="debug">
+		<appender-ref ref="rolling_file_appender" />
+	</logger>
+	<logger name="org.hibernate" level="debug">
+		<appender-ref ref="rolling_file_appender" />
+	</logger>
+
+	<!-- ====================================================================================================== -->
+	<!-- If not part of com.cienet.* override or a specific 3p setting, logging 
+		is turned -->
+	<!-- off at the root logger level -->
+	<!-- ====================================================================================================== -->
+
+	<root level="debug">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="rolling_file_appender"/>
+	</root>
+
+</configuration>

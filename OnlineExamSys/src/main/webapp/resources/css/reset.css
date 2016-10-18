@@ -1,0 +1,86 @@
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, q, th, td, caption, article, aside, figure, figcaption, footer, header, hgroup, nav, section, audio, video,i {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -webkit-font-smoothing: antialiased; 
+    font-smoothing: antialiased;
+}
+html, body {
+    background: #11254f;
+    color: #000;
+    font: 12px/1.5  "Microsoft YaHei","微软雅黑",helvetica,arial,verdana,tahoma,sans-serif;
+    text-align: left
+}
+var{font-style: normal;}
+fieldset, img, iframe {
+    border: 0 none
+}
+var,i,em{font-style: normal;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+ol, ul {
+    list-style: none
+}
+blockquote, q {
+    quotes: none
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+caption, th {
+    text-align: left
+}
+em,th {
+    font-style: normal;
+    font-weight: 500
+}
+sup {
+    vertical-align: text-top
+}
+sub {
+    vertical-align: text-bottom
+}
+.fl{float: left;}
+.fr{float: right;}
+.clearfix:after{
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+.clearfix{
+    *zoom: 1
+}
+.c, .clear {
+    clear: both;
+    float: none
+}
+.c {
+    overflow: hidden;
+    height: 0
+}
+html, body {
+    background: #fff;
+}
+a {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0
+}
+
+a span, a em, a strong {
+    cursor: pointer
+}
+ 
+/*自定义按钮*/
+btn{background-color: #fe5722;border-radius: 3px;width: 40px;height: 20px;text-align: center;font-size: 12px;line-height: 20px;color: #fff;}
+ 
